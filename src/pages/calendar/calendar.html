@@ -1,0 +1,27 @@
+
+<ion-header>
+  <ion-navbar color=primary >
+    <button color=light ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title><ion-label color=light>Calendrier</ion-label></ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <div>
+  <!-- A match -->
+    <ion-card *ngFor="let match of listMatch">
+      <!-- Name -->
+      <ion-card-header (click)='onClickMatch(match)'>
+        {{match.team1}} - {{match.team2}}
+      </ion-card-header> 
+    </ion-card>
+  </div>
+
+  <!-- Bouton d'ajout d'un joueur -->
+  <button ion-button round class="addMatchButton" (click)='onClickAddMatch()'>
+    <ion-icon large name="person-add"></ion-icon>
+  </button>
+</ion-content>

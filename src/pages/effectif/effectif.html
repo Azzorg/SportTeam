@@ -1,0 +1,35 @@
+<!--
+  Generated template for the Effectif page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color=primary>
+    <button color=light ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title><ion-label color=light>Effectif</ion-label></ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding >
+
+  <div>
+  <!-- A player -->
+    <ion-card *ngFor="let player of listPlayer">
+      <!-- Name -->
+      <ion-card-header (click)='onClickPlayer(player)'>
+        {{player.firstname}} {{player.surname}}
+      </ion-card-header> 
+    </ion-card>
+  </div>
+
+  <div style="margin:50px;"></div>
+
+  <!-- Bouton d'ajout d'un joueur -->
+  <button ion-button round class="addPlayerButton" (click)='onClickAddPlayer()'>
+    <ion-icon large name="person-add"></ion-icon>
+  </button>
+</ion-content>

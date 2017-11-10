@@ -1,0 +1,53 @@
+<!--
+  Generated template for the Player page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color=primary>
+    <ion-title><ion-label color=light>{{player.firstname}} {{player.surname}}</ion-label></ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-card>
+      <ion-card-content>
+        <ion-icon name="calendar" style="margin-right:5px;"></ion-icon>
+        <label style="color:black; margin-left:5px;"> Date de naissance : {{player.birthDate}} </label>
+      </ion-card-content>
+
+      <ion-card-content>
+        <ion-icon name="football" style="margin-right:5px;"></ion-icon>
+        <label style="color:black; margin-left:5px;"> Matchs joués : {{player.nbMatch}} </label>
+      </ion-card-content>
+
+      <ion-card-content>
+        <ion-icon name="time" style="margin-right:5px;"></ion-icon>
+        <label style="color:black; margin-left:5px;"> Minutes jouées : {{player.timePlayed}} minutes </label>
+      </ion-card-content>
+
+      <ion-card-content>
+        <ion-icon name="football" style="margin-right:5px;"></ion-icon>
+        <label style="color:black; margin-left:5px;"> Buts marqués : {{player.nbGoal}} </label>
+      </ion-card-content>
+
+      <ion-card-content>
+        <ion-icon name="football" style="margin-right:5px;"></ion-icon>
+        <label style="color:black; margin-left:5px;"> Passes décisives : {{player.nbPass}} </label>
+      </ion-card-content>
+
+      <ion-card-content>
+        <ion-icon name="square" style="color:yellow"> </ion-icon>
+        <label style="color:black; margin-left:5px;"> Carton jaune : {{player.nbYellowCard}} </label>
+      </ion-card-content>
+
+      <ion-card-content>
+        <ion-icon name="square" style="color: red"></ion-icon>
+        <label style="color:black; margin-left:5px;"> Carton rouge : {{player.nbRedCard}} </label>
+      </ion-card-content>
+    </ion-card>
+</ion-content>

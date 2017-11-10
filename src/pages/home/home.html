@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-navbar color=primary>
+    <button color=light ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title><ion-label color=light> Accueil </ion-label></ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <!-- Accession match en direct -->
+  <ion-card class="cards-list-demo" style="width: 100%; margin-left: 0px;">
+    <ion-card-header style="position: relative;">
+      Match en direct
+      <button ion-button class="accessCatButton" clear icon-right (click)='onClickMatchDirect(listPlayer)'> 
+        Aller au match 
+        <ion-icon name="play"></ion-icon>
+      </button>
+    </ion-card-header>
+
+    <ion-list>
+      <!-- Le prochain match -->
+      <ion-card>
+        <button ion-item>        
+          <label class="date"> Dimanche 14 mai, 15h00 </label>
+          <label class="intitule"> CS Changé - Le Mans FC </label> 
+        </button>
+      </ion-card>
+    </ion-list>
+  </ion-card>
+
+  <!-- Affichage de la catégorie match -->
+  <ion-card class="cards-list-demo" style="width: 100%; margin-left: 0px; position: relative;">
+    <ion-card-header>
+      Matchs
+      <button ion-button class="accessCatButton" clear icon-right (click)='onClickAllMatch()'> 
+        Voir tous les matchs 
+        <ion-icon name="play"></ion-icon>
+      </button>
+    </ion-card-header>
+
+    <ion-list>
+      <!-- Le dernier match -->
+      <ion-card>
+        <button ion-item (click)='onClickMatch(match1)'>
+          <label class="date"> {{match1.date}}, {{match1.heure}} </label>
+          <div class="intitule">
+            <label>{{match1.team1}}</label>
+            <label [ngStyle]="{'color': colorCode }" style="font-weight: bold;">{{match1.scoreTeam1}} : {{match1.scoreTeam2}}</label>
+            <label >{{match1.team2}}</label>
+          </div>
+        </button>
+      </ion-card>
+
+      <!-- Le prochain match -->
+      <ion-card>
+        <button ion-item (click)='onClickMatch(match2)'>        
+          <label class="date"> {{match2.date}}, {{match2.heure}} </label>
+          <label class="intitule"> {{match2.team1}} - {{match2.team2}} </label> 
+        </button>
+      </ion-card>
+    </ion-list>
+  </ion-card>
+
+
+</ion-content>

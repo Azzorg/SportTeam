@@ -1,0 +1,129 @@
+<!--
+  Generated template for the MatchDirect page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color=primary>
+    <ion-title><ion-label color=light>{{match.team1}} - {{match.team2}}</ion-label></ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+
+<ion-content padding>
+
+  <!-- Bouton fin de match -->
+  <div *ngIf="isBegun" style="text-align: center">
+    <button ion-button small (click)='onClickEndMatch()'>
+      Fin du match
+    </button>
+  </div>
+
+  <div *ngIf="!isBegun" style="text-align: center">
+    <button ion-button small (click)='onClickBegin()'>
+      Démarrer le match
+    </button>
+  </div>
+
+  <!-- Timer -->
+  <ion-card > 
+      <ion-item class="no-bottom-border item">
+          <button ion-button large full clear class="timer-button timer-text">{{seconde | time}}</button>
+      </ion-item>
+      <ion-item class="no-bottom-border" > 
+          <button ion-button icon-left clear color="danger" large item-left >
+              <ion-icon name="refresh"></ion-icon>
+          </button>
+          <!--
+          <button ion-button icon-left clear small color="primary" item-right >
+              <ion-icon name="pause"></ion-icon>
+              Pause
+          </button>      
+          <button ion-button icon-left clear small color="primary" item-right >
+              <ion-icon name="play"></ion-icon>
+              Resume
+          </button>  
+          -->
+          <button *ngIf="!isStarted && !isBegun" ion-button icon-left clear large color="primary" item-right disabled>
+              <ion-icon name="play"></ion-icon>
+          </button>
+          <button *ngIf="!isStarted && isBegun" ion-button icon-left clear large color="primary" item-right (click)='onClickStart()' >
+              <ion-icon name="play"></ion-icon>
+          </button>  
+          <button *ngIf="isStarted && isBegun" ion-button icon-left clear large color="primary" item-right (click)='onClickPause()' >
+              <ion-icon name="pause"></ion-icon>
+          </button>      
+      </ion-item>
+  </ion-card>
+
+
+
+  <!-- Buts -->
+  <ion-card > 
+    <!-- Score -->
+    <ion-item class="no-bottom-border item">
+        <button ion-button full clear>
+          <label>{{match.team1}}</label>
+          <label style="font-size: 25px; margin-left:4px; margin-right:4px;" [ngStyle]="{'color': colorCode }">{{match.scoreTeam1}} : {{match.scoreTeam2}}</label>
+          <label>{{match.team2}}</label>
+        </button>
+    </ion-item>
+
+    <ion-item *ngFor="let goal of match.listGoal">
+      <div *ngIf="goal.isFor && goal.playerScore != null">
+        <ion-icon name="football" color="victory"></ion-icon>
+        <label  >{{goal.time | time}} : {{goal.playerScore.firstname}} {{goal.playerScore.surname}}</label>
+      </div>
+      <div *ngIf="goal.isFor && goal.playerScore == null">
+        <ion-icon name="football" color="victory"></ion-icon>
+        <label  >{{goal.time | time}} : but pour</label>
+      </div>
+      <div *ngIf="!goal.isFor">
+        <ion-icon name="football" color="danger"></ion-icon>
+        <label >{{goal.time | time}} : but adverse</label>
+      </div>
+    </ion-item>
+  </ion-card>
+
+  <!-- Changements -->
+  <ion-card  style="margin-bottom: 50px;"> 
+    <ion-card-header color="primary" style="font-size: 18px;">
+      Changements : 
+    </ion-card-header>
+    <ion-item *ngFor="let change of match.listChange">
+      <div *ngIf="change.isFor">
+        {{change.time | time}} :
+        <div>
+          <ion-icon name="arrow-round-back" color="danger"></ion-icon>
+          <label> {{change.playerOut.firstname}} {{change.playerOut.surname}}</label>
+        </div>
+        <div>
+          <ion-icon name="arrow-round-forward" color="victory"></ion-icon>
+          <label> {{change.playerIn.firstname}} {{change.playerIn.surname}}</label>
+        </div>
+        
+      </div>
+      <label *ngIf="!change.isFor" >{{change.time | time}} : Changement adverse</label>
+    </ion-item>
+  </ion-card>
+
+
+
+  <!-- Bouton d'ajout d'un but -->
+  <button ion-button outline class="addGoalButton" (click)='onClickGoal()'>
+    <ion-icon name="football"></ion-icon>
+    <label style="margin-left:5px">But</label>
+  </button>
+
+  <!-- Bouton d'un changement' -->
+  <button ion-button outline class="changeButton" (click)='onClickChange()'>
+    <ion-icon name="swap"></ion-icon>
+    <label style="margin-left:5px">Changement</label>
+  </button>
+
+
+</ion-content>
